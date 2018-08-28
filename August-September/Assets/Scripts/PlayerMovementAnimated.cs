@@ -5,7 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMovementAnimated : MonoBehaviour {
 
+    [SerializeField]
+    public AudioSource audioS;
+
     public float baseSpeed;
+    public float animBaseSpeed;
     private Rigidbody2D playerRigidBody;
 
 
@@ -31,7 +35,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
     void Awake()
     {
         //defines animator
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         playerRigidBody = GetComponent<Rigidbody2D>();
         tm = GameObject.FindGameObjectWithTag("Tiles").GetComponent<Tilemap>();
     }
@@ -40,6 +44,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
     void Update()
     {
         GetPlayerInput();
+        PlayFootSteps();
 
         movement = new Vector2(movePlayerHorizontal, movePlayerVertical);
 
@@ -51,6 +56,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
         Debug.Log(tm.layoutGrid.WorldToCell(playerRigidBody.transform.position));
         Debug.Log(tm.GetTile(tm.layoutGrid.WorldToCell(playerRigidBody.transform.position)));
         // tm.SetTile(tm.layoutGrid.WorldToCell(playerRigidBody.transform.position), tm.GetTile(new Vector3Int(-2,-3,0)));
+<<<<<<< HEAD
 
         //Starting location of the black mass
         Vector3Int[] locationOfDeath = new Vector3Int[60];
@@ -66,6 +72,23 @@ public class PlayerMovementAnimated : MonoBehaviour {
                 // The count is incremented each thime this loop is run increasing the x location by 1
                 locationOfDeath[y] = new Vector3Int(-50 + count, 20 - y, 0);
 
+=======
+
+        //Starting location of the black mass
+        Vector3Int[] locationOfDeath = new Vector3Int[60];
+        // an array of tile base objects to be placed at the starting location of the black mass
+        TileBase[] DeathTiles = new TileBase[60];
+        if (frameCount == encroachingDoomSpeed)
+        {
+            //reset timer
+            frameCount = 0;
+            for (int y = 0; y < DeathTiles.Length; y++)
+            {
+                //(-20, 23, 0) is the base location of the black mass as i increment the for loop i am decrasing the y location which is going to drop down in a straight line
+                // The count is incremented each thime this loop is run increasing the x location by 1
+                locationOfDeath[y] = new Vector3Int(-50 + count, 20 - y, 0);
+
+>>>>>>> 0d1d4caaa16501ba2a000fc1e60b39b2d1a31e06
                 // if any of the positions we are iterating through match the player location speed up the the rate of doom faster then the player can run ie kill em
                 if (locationOfDeath[y] == tm.layoutGrid.WorldToCell(playerRigidBody.transform.position))
                 {
@@ -109,6 +132,19 @@ public class PlayerMovementAnimated : MonoBehaviour {
             anim.SetBool("isFlying", false);
             anim.SetBool("isDigging", false);
             anim.SetBool("isFiring", false);
+        }
+    }
+    private void PlayFootSteps()
+    {
+        if(movePlayerHorizontal > 0.1f || animBaseSpeed > 0.1f)
+        {
+            audioS.enabled = true;
+            audioS.loop = true;
+        }
+        if(movePlayerHorizontal < 0.1f && movePlayerVertical < 0.1f)
+        {
+            audioS.enabled = false;
+            audioS.loop = false;
         }
     }
 

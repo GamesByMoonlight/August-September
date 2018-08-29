@@ -15,10 +15,10 @@ public class UICounter : MonoBehaviour {
         { return; }
         float t = Time.time - startTime;// time in seconds
         string minuites = ((int)t / 60).ToString();
-        string seconds = (t % 60).ToString("f0"); // f2 for two decimals
-        TimerText.text = minuites + ":" + seconds;
+        string seconds = ((t % 60)*50).ToString("f0"); // f2 for two decimals
+        TimerText.text =  seconds;
 	}
-    public void Finnish()
+    public void Finish()
     {
         TimerText.color = Color.yellow;
         Finished = true;

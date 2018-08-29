@@ -29,6 +29,8 @@ public class PlayerMovementAnimated : MonoBehaviour {
     {
         movePlayerHorizontal = Input.GetAxis("Horizontal");
         movePlayerVertical = Input.GetAxis("Vertical");
+        //Debug.Log(movePlayerHorizontal);
+
     }
 
     // Use this for initialization
@@ -54,10 +56,10 @@ public class PlayerMovementAnimated : MonoBehaviour {
         //returns value to animator. when animBaseSpeed is greater than 0.25 animation changes from idle to walking
         anim.SetFloat ("animBaseSpeed", Mathf.Abs (movePlayerHorizontal));
         Debug.Log(tm.layoutGrid.WorldToCell(playerRigidBody.transform.position));
-        Debug.Log(tm.GetTile(tm.layoutGrid.WorldToCell(playerRigidBody.transform.position)));
+        //Debug.Log(tm.GetTile(tm.layoutGrid.WorldToCell(playerRigidBody.transform.position)));
         // tm.SetTile(tm.layoutGrid.WorldToCell(playerRigidBody.transform.position), tm.GetTile(new Vector3Int(-2,-3,0)));
-<<<<<<< HEAD
 
+        /*
         //Starting location of the black mass
         Vector3Int[] locationOfDeath = new Vector3Int[60];
         // an array of tile base objects to be placed at the starting location of the black mass
@@ -72,23 +74,6 @@ public class PlayerMovementAnimated : MonoBehaviour {
                 // The count is incremented each thime this loop is run increasing the x location by 1
                 locationOfDeath[y] = new Vector3Int(-50 + count, 20 - y, 0);
 
-=======
-
-        //Starting location of the black mass
-        Vector3Int[] locationOfDeath = new Vector3Int[60];
-        // an array of tile base objects to be placed at the starting location of the black mass
-        TileBase[] DeathTiles = new TileBase[60];
-        if (frameCount == encroachingDoomSpeed)
-        {
-            //reset timer
-            frameCount = 0;
-            for (int y = 0; y < DeathTiles.Length; y++)
-            {
-                //(-20, 23, 0) is the base location of the black mass as i increment the for loop i am decrasing the y location which is going to drop down in a straight line
-                // The count is incremented each thime this loop is run increasing the x location by 1
-                locationOfDeath[y] = new Vector3Int(-50 + count, 20 - y, 0);
-
->>>>>>> 0d1d4caaa16501ba2a000fc1e60b39b2d1a31e06
                 // if any of the positions we are iterating through match the player location speed up the the rate of doom faster then the player can run ie kill em
                 if (locationOfDeath[y] == tm.layoutGrid.WorldToCell(playerRigidBody.transform.position))
                 {
@@ -103,6 +88,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
         }
         frameCount += 1;
         //calls animation method
+        */
         SetAnimation();
     }
 
@@ -148,10 +134,94 @@ public class PlayerMovementAnimated : MonoBehaviour {
         }
     }
 
-        // Update is called once per frame
-   //     void Update () {
-   //     float xTranslation = Input.GetAxis("Horizontal") * baseSpeed;
-  //      float yTranslation = Input.GetAxis("Vertical") * baseSpeed;
- ////       transform.Translate(xTranslation, yTranslation, 0);
-   // }
+    // Update is called once per frame
+    //     void Update () {
+    //     float xTranslation = Input.GetAxis("Horizontal") * baseSpeed;
+    //      float yTranslation = Input.GetAxis("Vertical") * baseSpeed;
+    ////       transform.Translate(xTranslation, yTranslation, 0);
+    // }
+
+
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log("Made contact with a tile");
+      
+        if (movePlayerHorizontal>0 && movePlayerHorizontal > Mathf.Abs(movePlayerVertical))
+        {
+            Debug.Log("Moving in the positive x direction");
+          foreach(ContactPoint2D Smash in collision.contacts)
+            {
+                Debug.Log("In loop");
+                Vector3 Smashpoint = new Vector3(Smash.point.x+1,Smash.point.y,0);
+                Vector3 regTile = new Vector3(-2, -4, 0);
+
+                // need checks to see state of dragon 
+                Debug.Log(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint)));
+                if (tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint)).name == "rockTile")
+                {
+                    Debug.Log("You hit a rock !!");
+                }
+                tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), tm.GetTile(tm.layoutGrid.WorldToCell(regTile)));
+
+
+            }
+            return; 
+        }
+
+        if (movePlayerHorizontal < 0 && movePlayerHorizontal < Mathf.Abs(movePlayerVertical))
+        {
+            Debug.Log("Moving in the negative x direction");
+            foreach (ContactPoint2D Smash in collision.contacts)
+            {
+                Debug.Log("In loop");
+                Vector3 Smashpoint = new Vector3(Smash.point.x - 1, Smash.point.y, 0);
+                Vector3 regTile = new Vector3(-2, -4, 0);
+
+                // need checks to see state of dragon 
+                Debug.Log(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint)));
+                    tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), tm.GetTile(tm.layoutGrid.WorldToCell(regTile)));
+
+
+            }
+            return;
+        }
+
+        if (movePlayerVertical < 0 && movePlayerVertical < Mathf.Abs(movePlayerHorizontal))
+        {
+            Debug.Log("Moving in the negative y direction");
+            foreach (ContactPoint2D Smash in collision.contacts)
+            {
+                Debug.Log("In loop");
+                Vector3 Smashpoint = new Vector3(Smash.point.x, Smash.point.y - 1, 0);
+                Vector3 regTile = new Vector3(-2, -4, 0);
+
+                // need checks to see state of dragon 
+                Debug.Log(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint)));
+                    tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), tm.GetTile(tm.layoutGrid.WorldToCell(regTile)));
+
+
+            }
+            return;
+        }
+        if (movePlayerVertical > 0 && movePlayerVertical > Mathf.Abs(movePlayerHorizontal))
+        {
+            Debug.Log("Moving in the positive y direction");
+            foreach (ContactPoint2D Smash in collision.contacts)
+            {
+                Debug.Log("In loop");
+                Vector3 Smashpoint = new Vector3(Smash.point.x, Smash.point.y+1, 0);
+                Vector3 regTile = new Vector3(-2, -4, 0);
+
+                // need checks to see state of dragon 
+                Debug.Log(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint)));
+                    tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), tm.GetTile(tm.layoutGrid.WorldToCell(regTile)));
+
+
+            }
+            return;
+        }
+
+    }
 }

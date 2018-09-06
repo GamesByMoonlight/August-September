@@ -166,7 +166,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
                 {
                     //Debug.Log("In loop");
                     Vector3 Smashpoint = new Vector3(Smash.point.x + 1, Smash.point.y+1, 0);
-                    Vector3 regTile = new Vector3(-1, -1, 0);
+                    
 
 
                     if (DragonValidator(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint))))
@@ -184,7 +184,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
                 {
                     //Debug.Log("In loop");
                     Vector3 Smashpoint = new Vector3(Smash.point.x + 1, Smash.point.y, 0);
-                    Vector3 regTile = new Vector3(-1, -1, 0);
+                    
  
                     if (DragonValidator(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint))))
                     {
@@ -203,7 +203,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
                 {
                     //Debug.Log("In loop");
                     Vector3 Smashpoint = new Vector3(Smash.point.x - 1, Smash.point.y -1, 0);
-                    Vector3 regTile = new Vector3(-1, -1, 0);
+                    
                     if (DragonValidator(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint))))
                     {
                         tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), null);
@@ -217,7 +217,6 @@ public class PlayerMovementAnimated : MonoBehaviour {
                 {
                     //Debug.Log("In loop");
                     Vector3 Smashpoint = new Vector3(Smash.point.x - 1, Smash.point.y, 0);
-                    Vector3 regTile = new Vector3(-1, -1, 0);
                     if (DragonValidator(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint))))
                     {
                         tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), null);
@@ -233,7 +232,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
             {
                 //Debug.Log("In loop");
                 Vector3 Smashpoint = new Vector3(Smash.point.x, Smash.point.y - 1, 0);
-                Vector3 regTile = new Vector3(-1, -1, 0);
+                
                 if (DragonValidator(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint))))
                 {
                     tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), null);
@@ -249,7 +248,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
             {
                 //Debug.Log("In loop");
                 Vector3 Smashpoint = new Vector3(Smash.point.x, Smash.point.y+1, 0);
-                Vector3 regTile = new Vector3(-1, -1, 0);
+                
                 if (DragonValidator(tm.GetTile(tm.layoutGrid.WorldToCell(Smashpoint))))
                 {
                     tm.SetTile(tm.layoutGrid.WorldToCell(Smashpoint), null);
@@ -267,7 +266,6 @@ public class PlayerMovementAnimated : MonoBehaviour {
             return false;
         }
 
-        Debug.Log("Tile name is " + crashingTile.name);
 
         DragonType.eDragonType d;
 

@@ -46,18 +46,19 @@ public class PlayerMovementAnimated : MonoBehaviour {
 
     void Update()
     {
-        GetPlayerInput();
 
-        movement = new Vector2(movePlayerHorizontal, movePlayerVertical);
-
-        // Move Character if character is alive
         if (canMove)
-            playerRigidBody.velocity = movement * baseSpeed;
-        else
+        {
             playerRigidBody.velocity = new Vector2(0, 0);
+            GetPlayerInput();
+            movement = new Vector2(movePlayerHorizontal, movePlayerVertical);
+            playerRigidBody.velocity = movement * baseSpeed;
+        }            
+        
+            
 
         //returns value to animator. when animBaseSpeed is greater than 0.25 animation changes from idle to walking
-        anim.SetFloat("animBaseSpeed", Mathf.Abs(movePlayerHorizontal) + Mathf.Abs(movePlayerVertical));
+        anim.SetFloat("animBaseSpeed", playerRigidBody.velocity.magnitude);
 
     }
 
@@ -260,6 +261,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
     public void ImDying()
     {
         canMove = false;
+        playerRigidBody.velocity = new Vector2(0, 0);
         anim.SetTrigger("Death");
         StartCoroutine("DestroyMe");
     }
@@ -267,13 +269,20 @@ public class PlayerMovementAnimated : MonoBehaviour {
     void EndLevelRoutine()
     {
         canMove = false;
-        // Get current position
-        // Move to position relative to momma dragon over time
-        // When at final position, flip sprite around Y to turn it around
 
-        
-        // Sprite should be behind momma dragon if above a certain Y value...?
+        Vector2 currentPosition = transform.position;
+        Vector2 endPosition = new Vector2(currentPosition.x + 4f, -3.75f);
 
+        playerRigidBody.velocity = endPosition - currentPosition;
+
+        StartCoroutine(EndOfAutomatedMovement());
+    }
+
+    IEnumerator EndOfAutomatedMovement()
+    {
+        yield return new WaitForSeconds(1.2f);
+        playerRigidBody.velocity = new Vector2(0f, 0f);
+        transform.localScale = new Vector3(-1, 1, 1);
     }
 
     //After death animation this disables sprite renderer and calls TriggerLevelEnd
@@ -323,8 +332,10 @@ public class PlayerMovementAnimated : MonoBehaviour {
             
             ManaAdded(dragonType);
             sk = FindObjectOfType<ScoreKeeper>();
-            sk.AddScore();
-
+            if (sk != null)
+                sk.AddScore();
+            else
+                Debug.LogWarning("Scorekeeper object missing, cannot add score.");
         }
     }
 

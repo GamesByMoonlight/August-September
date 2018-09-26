@@ -5,9 +5,16 @@ using UnityEngine;
 public class ScoreKeeper : MonoBehaviour {
 
     public int SavedScore { get; set; }
+    static ScoreKeeper instance;
 
-    // Use this for initialization
 
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(this);
+    }
 
 
     void Start () {

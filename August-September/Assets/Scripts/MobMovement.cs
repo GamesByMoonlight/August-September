@@ -59,7 +59,7 @@ public class MobMovement : MonoBehaviour {
         StopPoint = new Vector3(endZoneTransform.position.x - 6f,  transform.position.y, transform.position.z);
 
         InvokeRepeating("StopMob", 0, 0.1f);
-        Invoke("TurnBlack", 3f);
+        Invoke("TurnBlack", 3.5f);
     }
 
     void StopMob()

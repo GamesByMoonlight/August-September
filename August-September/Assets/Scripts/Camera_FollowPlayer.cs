@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camera_FollowPlayer : MonoBehaviour {
 
-    public GameObject player;       //Public variable to store a reference to the player game object
+    GameObject player;       //Public variable to store a reference to the player game object
 
     private Rigidbody2D rigidBody;
     private Vector3 offset;         //Private variable to store the offset distance between the player and camera
@@ -14,7 +14,7 @@ public class Camera_FollowPlayer : MonoBehaviour {
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-
+        player = FindObjectOfType<PlayerMovementAnimated>().gameObject;
         //Calculate and store the offset value by getting the distance between the player's position and camera's position.
         offset = transform.position - player.transform.position;
     }

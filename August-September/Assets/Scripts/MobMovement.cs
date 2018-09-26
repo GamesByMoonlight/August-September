@@ -5,7 +5,6 @@ using UnityEngine;
 public class MobMovement : MonoBehaviour {
 
     public float mobSpeed = 10;
-    public UICounter counter;
 
     public PlayerMovementAnimated player;
 

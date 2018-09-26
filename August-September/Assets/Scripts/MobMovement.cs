@@ -8,12 +8,15 @@ public class MobMovement : MonoBehaviour {
 
     Vector3 StopPoint;
     AudioSource[] audioSources;
-    public AudioClip tireScreech;
+    SpriteRenderer spriteRenderer;
+    ParticleSystem mobDeathParticles;
 
 
     void Start()
     {
         audioSources = GetComponents<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        mobDeathParticles = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -47,11 +50,8 @@ public class MobMovement : MonoBehaviour {
             audioSource.Stop();
         }
 
-        if (tireScreech != null)
-        {
-            audioSources[0].clip = tireScreech;
-            audioSources[0].Play();
-        }
+        audioSources[2].Play();
+        
         
 
 
@@ -59,6 +59,7 @@ public class MobMovement : MonoBehaviour {
         StopPoint = new Vector3(endZoneTransform.position.x - 6f,  transform.position.y, transform.position.z);
 
         InvokeRepeating("StopMob", 0, 0.1f);
+        Invoke("TurnBlack", 3f);
     }
 
     void StopMob()
@@ -71,6 +72,12 @@ public class MobMovement : MonoBehaviour {
             CancelInvoke("StopMob");
         }
             
+    }
+
+    void TurnBlack()
+    {
+        spriteRenderer.enabled = false;
+        mobDeathParticles.Play();
     }
 
 

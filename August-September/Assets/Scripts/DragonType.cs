@@ -11,7 +11,7 @@ public class DragonType : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Animator anim;
-    private bool switchAvailable = true;
+    public bool switchAvailable = true;
 
 
     private eDragonType _DragonType;

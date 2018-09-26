@@ -26,4 +26,20 @@ public class MobMovement : MonoBehaviour {
             counter.Finish();
         }
     }
+
+    void StopMob()
+    {
+        mobSpeed = 0;
+    }
+
+    void OnEnable()
+    {
+        EventManager.OnLevelEnd += StopMob;
+    }
+
+    void OnDisable()
+    {
+        EventManager.OnLevelEnd -= StopMob;
+    }
+
 }

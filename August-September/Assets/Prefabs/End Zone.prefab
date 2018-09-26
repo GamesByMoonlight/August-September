@@ -21,11 +21,10 @@ GameObject:
   - component: {fileID: 4500967257202050}
   - component: {fileID: 114470044779490756}
   - component: {fileID: 61373533660638860}
-  - component: {fileID: 95432913667167256}
   m_Layer: 0
   m_Name: End Zone
   m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -40,6 +39,7 @@ GameObject:
   - component: {fileID: 212416659258290186}
   - component: {fileID: 82050597694625880}
   - component: {fileID: 114316057722877700}
+  - component: {fileID: 95716967120551158}
   m_Layer: 0
   m_Name: msDragon
   m_TagString: Untagged
@@ -70,13 +70,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714281332356306}
-  m_LocalRotation: {x: 0.6253531, y: 0.2265721, z: -0.71459687, w: 0.21667935}
-  m_LocalPosition: {x: -2.11, y: 0.55, z: 0}
+  m_LocalRotation: {x: 0.6561866, y: 0.1087243, z: -0.74212897, w: 0.082721755}
+  m_LocalPosition: {x: -4.42, y: -0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4227986651698398}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 36.5, y: -81.761, z: -178.12502}
+  m_LocalEulerAnglesHint: {x: 15.661001, y: -83.129005, z: -181.185}
 --- !u!4 &4227986651698398
 Transform:
   m_ObjectHideFlags: 1
@@ -84,8 +84,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1331002126358662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2300034, y: 1.17, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: 4.75, y: 1.11, z: 0}
+  m_LocalScale: {x: 1.4704812, y: 1.430965, z: 1}
   m_Children:
   - {fileID: 4171889488098636}
   m_Father: {fileID: 4500967257202050}
@@ -226,13 +226,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &95432913667167256
+--- !u!95 &95716967120551158
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1186061224538732}
+  m_GameObject: {fileID: 1331002126358662}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a095d876e2fd0b049a3e231a51ee8b6f, type: 2}
@@ -779,7 +779,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7853981
+      scalar: 1.0471976
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -890,7 +890,7 @@ ParticleSystem:
     serializedVersion: 5
     enabled: 1
     type: 4
-    angle: 45
+    angle: 30
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -4891,7 +4891,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: f323ab98f4685f94dacd21b08cd34d53, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93b391a5a90faea469e17adb00363609, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

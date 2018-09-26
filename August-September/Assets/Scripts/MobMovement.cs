@@ -56,10 +56,10 @@ public class MobMovement : MonoBehaviour {
 
 
         Transform endZoneTransform = FindObjectOfType<EndZone>().transform;
-        StopPoint = new Vector3(endZoneTransform.position.x - 6f,  transform.position.y, transform.position.z);
+        StopPoint = new Vector3(endZoneTransform.position.x - 7.5f,  transform.position.y, transform.position.z);
 
         InvokeRepeating("StopMob", 0, 0.1f);
-        Invoke("TurnBlack", 3.5f);
+        Invoke("TurnBlack", 2.5f);
     }
 
     void StopMob()

@@ -6,11 +6,13 @@ public class MamaDragonController : MonoBehaviour {
 
     ParticleSystem fireParticles;
     AudioSource fireBreathPlayer;
+    Animator mamaAnimator;
 
     void Start()
     {
         fireParticles = GetComponentInChildren<ParticleSystem>();
         fireBreathPlayer = GetComponent<AudioSource>();
+        mamaAnimator = GetComponent<Animator>();
     }
 
 	void OnEnable()
@@ -24,10 +26,10 @@ public class MamaDragonController : MonoBehaviour {
 
     void ActivateMomma()
     {
-        Invoke("BreatheFire", 2.5f);
+        mamaAnimator.SetTrigger("BreatheFire");
     }
 
-    void BreatheFire()
+    public void PlayFireParticles()
     {
         fireBreathPlayer.Play();
         fireParticles.Play();

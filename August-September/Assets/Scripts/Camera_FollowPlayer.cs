@@ -35,6 +35,7 @@ public class Camera_FollowPlayer : MonoBehaviour {
         
     }
 
+
     void OnEnable()
     {
         EventManager.OnLevelEnd += StopFollowingPlayer;

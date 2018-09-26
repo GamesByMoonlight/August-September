@@ -271,10 +271,10 @@ public class PlayerMovementAnimated : MonoBehaviour {
         canMove = false;
 
         Vector2 currentPosition = transform.position;
-        Vector2 endPosition = new Vector2(currentPosition.x + 3.5f, -3.5f);
+        Vector2 endPosition = new Vector2(currentPosition.x + 5.5f, -3.5f); // This finds a position roughly behind mama dragon
 
         playerRigidBody.isKinematic = true;
-        playerRigidBody.velocity = endPosition - currentPosition;
+        playerRigidBody.velocity = endPosition - currentPosition;  // It just kind of pushes itself that direction
 
         StartCoroutine(EndOfAutomatedMovement());
     }

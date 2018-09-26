@@ -5,8 +5,8 @@ using UnityEngine;
 public class ScoreKeeper : MonoBehaviour {
 
     public int SavedScore { get; set; }
-    static ScoreKeeper instance;
 
+    static ScoreKeeper instance;
 
     void Awake()
     {
@@ -18,14 +18,12 @@ public class ScoreKeeper : MonoBehaviour {
 
 
     void Start () {
-        //SavedScore = 0;
         DontDestroyOnLoad(this.gameObject);
 	}
 
     public void AddScore()
     {
         SavedScore += 10 ;
-
     }
 
 public void ResetScore()

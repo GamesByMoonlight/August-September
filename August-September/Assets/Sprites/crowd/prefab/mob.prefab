@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobSpeed: 2.5
-  counter: {fileID: 0}
+  player: {fileID: 0}
 --- !u!212 &212116623000446956
 SpriteRenderer:
   m_ObjectHideFlags: 1

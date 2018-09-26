@@ -271,8 +271,9 @@ public class PlayerMovementAnimated : MonoBehaviour {
         canMove = false;
 
         Vector2 currentPosition = transform.position;
-        Vector2 endPosition = new Vector2(currentPosition.x + 4f, -3.75f);
+        Vector2 endPosition = new Vector2(currentPosition.x + 3.5f, -3.5f);
 
+        playerRigidBody.isKinematic = true;
         playerRigidBody.velocity = endPosition - currentPosition;
 
         StartCoroutine(EndOfAutomatedMovement());
@@ -291,7 +292,7 @@ public class PlayerMovementAnimated : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.2f);
         dragonType.ClearSprite();
-        GameObject mySplatter = Instantiate(Splatter, transform.position, Quaternion.identity) as GameObject;
+        Instantiate(Splatter, transform.position, Quaternion.identity);
     }
 
     
